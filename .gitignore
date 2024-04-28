@@ -4,3 +4,4 @@ __pycache__/
 speech/*
 video_audio/*
 .env
+saved_voices.json

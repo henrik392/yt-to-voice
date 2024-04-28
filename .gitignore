@@ -1,0 +1,6 @@
+venv/
+.DS_Store
+__pycache__/
+speech/*
+video_audio/*
+.env

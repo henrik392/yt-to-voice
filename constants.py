@@ -1,0 +1,2 @@
+VIDEO_AUDIO_DIRECTORY = './video_audio'
+GENERATED_SPEECH_DIRECTORY = './speech'

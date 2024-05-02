@@ -1,6 +1,14 @@
 import yt_dlp
 import os
-from constants import VIDEO_AUDIO_DIRECTORY
+from app.constants import VIDEO_AUDIO_DIRECTORY
+import re
+
+
+def get_youtube_id(url):
+    # This regex pattern works for standard and shortened YouTube URLs
+    regex = r"(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu.be\/)([a-zA-Z0-9_-]{11})"
+    match = re.search(regex, url)
+    return match.group(1) if match else None
 
 
 def get_video_title(youtube_url):
@@ -18,9 +26,9 @@ def file_exists(file_name):
 
 
 def download_audio(youtube_url):
-    title = get_video_title(youtube_url)
+    name = get_video_title(youtube_url).strip().replace(" ", "_")
 
-    file_name = title + '.mp3'
+    file_name = name + '.mp3'
 
     if file_exists(file_name):
         print(f"File {file_name} already exists in {VIDEO_AUDIO_DIRECTORY}")
@@ -33,7 +41,7 @@ def download_audio(youtube_url):
             'preferredcodec': 'mp3',
             'preferredquality': '192',
         }],
-        'outtmpl': os.path.join(VIDEO_AUDIO_DIRECTORY, '%(title)s.%(ext)s'),
+        'outtmpl': os.path.join(VIDEO_AUDIO_DIRECTORY, name + '.%(ext)s'),
         'noplaylist': True,
     }
 
@@ -44,7 +52,3 @@ def download_audio(youtube_url):
     # Get the file name
 
     return os.path.join(VIDEO_AUDIO_DIRECTORY, file_name)
-
-
-# video_url = "https://www.youtube.com/watch?v=M7uo5jmFDUw&ab_channel=Fireship"
-# download_audio(video_url)

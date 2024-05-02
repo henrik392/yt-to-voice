@@ -1,7 +1,7 @@
 venv/
 .DS_Store
 __pycache__/
-speech/*
-video_audio/*
+*/speech/*
+*/video_audio/*
 .env
 saved_voices.json

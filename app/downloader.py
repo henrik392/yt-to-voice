@@ -26,9 +26,8 @@ def file_exists(file_name):
 
 
 def download_audio(youtube_url):
-    name = get_video_title(youtube_url).strip().replace(" ", "_")
-
-    file_name = name + '.mp3'
+    youtube_id = get_youtube_id(youtube_url)
+    file_name = youtube_id + '.mp3'
 
     if file_exists(file_name):
         print(f"File {file_name} already exists in {VIDEO_AUDIO_DIRECTORY}")
@@ -41,7 +40,7 @@ def download_audio(youtube_url):
             'preferredcodec': 'mp3',
             'preferredquality': '192',
         }],
-        'outtmpl': os.path.join(VIDEO_AUDIO_DIRECTORY, name + '.%(ext)s'),
+        'outtmpl': os.path.join(VIDEO_AUDIO_DIRECTORY, youtube_id + '.%(ext)s'),
         'noplaylist': True,
     }
 

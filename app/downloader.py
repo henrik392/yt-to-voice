@@ -1,6 +1,6 @@
 import yt_dlp
 import os
-from app.constants import VIDEO_AUDIO_DIRECTORY
+from constants import VIDEO_AUDIO_DIRECTORY
 import re
 
 

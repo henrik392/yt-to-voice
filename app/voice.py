@@ -2,7 +2,7 @@ import json
 from elevenlabs.client import ElevenLabs
 from elevenlabs import play, save
 from dotenv import load_dotenv
-from .constants import GENERATED_SPEECH_DIRECTORY
+from constants import GENERATED_SPEECH_DIRECTORY
 import os
 
 load_dotenv()
